@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  webservice-api:
+    container_name: webservice-api
+    build:
+      context: ./backend/api
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./backend/api:/app
+    ports:
+      - 9000:9000
+    environment:
+      - SERVICE_NAME=webservice-api
+    env_file:
+      - .env.dev
+
+  consumer:
+    container_name: consumer
+    build:
+      context: ./backend/inventory
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend/inventory:/app
+    environment:
+      - SERVICE_NAME=consumer
+    env_file: .env.dev
+    depends_on:
+      - queue
+
+  queue:
+    container_name: queue
+    image: "rabbitmq:3-management"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - ./queue/data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+      - ./queue/logs:/var/log/rabbitmq/log
+    ports:
+      - 5672:5672
+      - 15672:15672
+  
