@@ -11,7 +11,7 @@ import (
 	"github.com/streadway/amqp"
 )
 
-func (h *Handler) PublishMessageToCunsumerCat(c *fiber.Ctx) error {
+func (h *Handler) PublishMessageToConsumerCat(c *fiber.Ctx) error {
 	var requestBody models.MessageCat
 	err := c.BodyParser(&requestBody)
 	if err != nil {

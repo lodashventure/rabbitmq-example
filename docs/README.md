@@ -142,7 +142,7 @@ ContentType: ระบุประเภทของข้อมูลที่�
 
 ### consumer > exchange > publish-message-to-consumer-cat-exchange (ทำงานอยู่ที่ container name publish-message-to-consumer-cat)
 
-    curl --location 'http://127.0.0.1:9000/api/v1/publish_message_to_customer_cat' \
+    curl --location 'http://127.0.0.1:9000/api/v1/publish_message_to_consumer_cat' \
     --header 'Content-Type: application/json' \
     --data '{
         "message": "The cat doesn'\''t like eat milk.",
@@ -150,7 +150,7 @@ ContentType: ระบุประเภทของข้อมูลที่�
         "age": 2
     }'
 
-    หลังจากเรียก API ที่ /api/v1/publish_message_to_customer_cat,
+    หลังจากเรียก API ที่ /api/v1/publish_message_to_consumer_cat,
     ระบบจะทำการ publish ข้อมูลไปยัง exchange ที่ชื่อ publish-message-to-consumer-cat-exchange
     
     จากนั้น consumer จะดึงข้อมูลด้วย queue ที่ได้ผูกไว้กับ exchange นี้
@@ -161,14 +161,14 @@ ContentType: ระบุประเภทของข้อมูลที่�
 
 ### consumer > exchange > publish-message-to-consumer-dog-exchange (ทำงานอยู่ที่ container name publish-message-to-consumer-dog)
 
-    curl --location 'http://127.0.0.1:9000/api/v1/publish_message_to_customer_dog' \
+    curl --location 'http://127.0.0.1:9000/api/v1/publish_message_to_consumer_dog' \
     --header 'Content-Type: application/json' \
     --data '{
         "bleed": "chivava",
         "message": "chivava เป็นสายพันธุ์ของสุนัขที่มีขนาดเล็กที่สุดในโลก"
     }'
 
-    หลังจากเรียก API ที่ /api/v1/publish_message_to_customer_dog,
+    หลังจากเรียก API ที่ /api/v1/publish_message_to_consumer_dog,
     ระบบจะทำการ publish ข้อมูลไปยัง exchange ที่ชื่อ publish-message-to-consumer-dog-exchange
     
     จากนั้น consumer จะดึงข้อมูลด้วย queue ที่ได้ผูกไว้กับ exchange นี้

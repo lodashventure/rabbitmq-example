@@ -38,9 +38,9 @@ func messageHandler(c *helpers.Connection, deliveries <-chan amqp.Delivery) {
 
 	for d := range deliveries {
 		if os.Getenv("SERVICE_NAME") == os.Getenv("QUEUE_NAME_PUBLISH_MESSAGE_TO_CONSUMER_CAT") {
-			worker.PublishMessageToConsumerCat(d.Body)
+			worker.ShowMessageCat(d.Body)
 		} else if os.Getenv("SERVICE_NAME") == os.Getenv("QUEUE_NAME_PUBLISH_MESSAGE_TO_CONSUMER_DOG") {
-			worker.PublishMessageToConsumerDog(d.Body)
+			worker.ShowMessageDog(d.Body)
 		}
 
 		d.Ack(false)

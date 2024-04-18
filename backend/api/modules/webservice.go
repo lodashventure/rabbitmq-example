@@ -29,8 +29,8 @@ func Webservice() {
 
 	h := handlers.NewHandler(middlewares.InitPublisher())
 
-	api.Post("/publish_message_to_customer_cat", h.PublishMessageToCunsumerCat)
-	api.Post("/publish_message_to_customer_dog", h.PublishMessageToCunsumerDog)
+	api.Post("/publish_message_to_consumer_cat", h.PublishMessageToConsumerCat)
+	api.Post("/publish_message_to_consumer_dog", h.PublishMessageToConsumerDog)
 
 	log.Fatal(app.Listen(os.Getenv("SRVC_SERVER_PORT")))
 }
