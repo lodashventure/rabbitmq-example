@@ -8,8 +8,8 @@ import (
 	"github.com/lodashventure/rabbitmq-example/models"
 )
 
-func PublishMessageToConsumerDog(body []byte) {
-	var data models.MessageDog
+func ShowMessageCat(body []byte) {
+	var data models.MessageCat
 
 	err := json.Unmarshal(body, &data)
 	if err != nil {
@@ -17,6 +17,6 @@ func PublishMessageToConsumerDog(body []byte) {
 		return
 	}
 
-	message := fmt.Sprintf("[DOG] breed: %s, message: %s", data.Breed, data.Message)
+	message := fmt.Sprintf("[CAT] name: %s, age: %d, message: %s", data.Name, data.Age, data.Message)
 	log.Println(message)
 }

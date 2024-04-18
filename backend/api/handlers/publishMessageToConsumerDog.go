@@ -11,7 +11,7 @@ import (
 	"github.com/streadway/amqp"
 )
 
-func (h *Handler) PublishMessageToCunsumerDog(c *fiber.Ctx) error {
+func (h *Handler) PublishMessageToConsumerDog(c *fiber.Ctx) error {
 	var requestBody models.MessageDog
 	err := c.BodyParser(&requestBody)
 	if err != nil {
