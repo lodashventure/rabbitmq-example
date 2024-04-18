@@ -5,7 +5,7 @@ services:
     container_name: webservice-api
     build:
       context: ./backend/api
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - ./backend/api:/app
     ports:
@@ -15,15 +15,28 @@ services:
     env_file:
       - .env.dev
 
-  consumer:
-    container_name: consumer
+  publish-message-to-consumer-dog:
+    container_name: publish-message-to-consumer-dog
     build:
-      context: ./backend/inventory
+      context: ./backend/api
       dockerfile: Dockerfile.dev
     volumes:
-      - ./backend/inventory:/app
+      - ./backend/api:/app
     environment:
-      - SERVICE_NAME=consumer
+      - SERVICE_NAME=publish-message-to-consumer-dog
+    env_file: .env.dev
+    depends_on:
+      - queue
+
+  publish-message-to-consumer-cat:
+    container_name: publish-message-to-consumer-cat
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend/api:/app
+    environment:
+      - SERVICE_NAME=publish-message-to-consumer-cat
     env_file: .env.dev
     depends_on:
       - queue

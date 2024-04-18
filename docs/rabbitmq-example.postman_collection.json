@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "2cf6a181-1b16-4952-bb26-b971bc0f468f",
+		"name": "rabbitmq-example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18395872",
+		"_collection_link": "https://lodashapi.postman.co/workspace/rabbitmq-example~3d048755-36ca-4085-98c2-54187bd1f139/collection/18395872-2cf6a181-1b16-4952-bb26-b971bc0f468f?action=share&source=collection_link&creator=18395872"
+	},
+	"item": [
+		{
+			"name": "publish message to customer cat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"message\": \"The cat doesn't like eat milk.\",\n    \"name\": \"tony\",\n    \"age\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9000/api/v1/publish_message_to_customer_cat",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"publish_message_to_customer_cat"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"The cat doesn't like eat milk.\",\n    \"name\": \"tony\",\n    \"age\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:9000/api/v1/publish_message_to_customer_cat",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"publish_message_to_customer_cat"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 18 Apr 2024 09:15:56 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "publish message to customer dog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bleed\": \"chivava\",\n    \"message\": \"chivava เป็นสายพันธุ์ของสุนัขที่มีขนาดเล็กที่สุดในโลก\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9000/api/v1/publish_message_to_customer_dog",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"publish_message_to_customer_dog"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bleed\": \"chivava\",\n    \"message\": \"chivava เป็นสายพันธุ์ของสุนัขที่มีขนาดเล็กที่สุดในโลก\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:9000/api/v1/publish_message_to_customer_dog",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"publish_message_to_customer_dog"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 18 Apr 2024 09:16:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Status\": \"success\"\n}"
+				}
+			]
+		}
+	]
+}

@@ -2,10 +2,14 @@ package modules
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/lodashventure/rabbitmq-example/handlers"
+	"github.com/lodashventure/rabbitmq-example/middlewares"
 )
 
 func Webservice() {
@@ -23,7 +27,10 @@ func Webservice() {
 
 	api := app.Group(fmt.Sprintf("/%s/%s", apiName, version)) // /api/v1
 
-	h := handlers.NewHandler(customMiddleware.InitPublisher())
+	h := handlers.NewHandler(middlewares.InitPublisher())
 
-	api.Get("")
+	api.Post("/publish_message_to_customer_cat", h.PublishMessageToCunsumerCat)
+	api.Post("/publish_message_to_customer_dog", h.PublishMessageToCunsumerDog)
+
+	log.Fatal(app.Listen(os.Getenv("SRVC_SERVER_PORT")))
 }

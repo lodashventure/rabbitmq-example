@@ -36,6 +36,7 @@ type Connection struct {
 	exchangeDeclares     []exchangeDeclares
 	queueBinds           []queueBinds
 	queueDeclaresConsume []queueDeclares
+	serviceName          string
 }
 
 // NewConnection RabbitMQ returns the new connection object

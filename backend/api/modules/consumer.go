@@ -4,33 +4,30 @@ import (
 	"log"
 	"os"
 
+	"github.com/lodashventure/rabbitmq-example/helpers"
+	"github.com/lodashventure/rabbitmq-example/worker"
 	"github.com/streadway/amqp"
 )
 
-func Consumer() {
+func Consumer(serviceName string) {
 	conn := helpers.NewRabbitmqConnection(os.Getenv("QUEUE_URL"))
 	defer conn.RabbitmqClose()
 
 	err := conn.RabbitmqConnect()
 	if err != nil {
-		Consumer()
+		Consumer(serviceName)
 	}
 
-	nameQueue := "upload-queue"
-	nameExchange := "uploader-exchange"
+	worker.CreateQueueAndExchange(conn)
 
-	conn.RabbitmqAddExchangeDeclare(nameExchange, "fanout")
-	conn.RabbitmqAddQueueDeclare(nameQueue)
-	conn.RabbitmqAddQueueBind(nameQueue, "", nameExchange)
-
-	delivery, err := conn.RabbitmqConsume(nameQueue, "")
+	delivery, err := conn.RabbitmqConsume(serviceName, "")
 	if err != nil {
 		panic(err)
 	}
 
 	forever := make(chan bool)
 
-	go conn.RabbitmqHandleConsumedDeliveries(nameQueue, "", delivery, messageHandler)
+	go conn.RabbitmqHandleConsumedDeliveries(serviceName, "", delivery, messageHandler)
 
 	log.Println("Welcome to the server Consumer")
 
@@ -38,9 +35,13 @@ func Consumer() {
 }
 
 func messageHandler(c *helpers.Connection, deliveries <-chan amqp.Delivery) {
-	config := helpers.PrepareConfiguration()
 
 	for d := range deliveries {
+		if os.Getenv("SERVICE_NAME") == os.Getenv("QUEUE_NAME_PUBLISH_MESSAGE_TO_CONSUMER_CAT") {
+			worker.PublishMessageToConsumerCat(d.Body)
+		} else if os.Getenv("SERVICE_NAME") == os.Getenv("QUEUE_NAME_PUBLISH_MESSAGE_TO_CONSUMER_DOG") {
+			worker.PublishMessageToConsumerDog(d.Body)
+		}
 
 		d.Ack(false)
 	}

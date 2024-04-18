@@ -9,3 +9,5 @@
 *.swo
 gin-bin
 vendor
+temp/
+.git/

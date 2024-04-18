@@ -11,11 +11,11 @@ func main() {
 	serviceName := os.Getenv("SERVICE_NAME") // from environment in docker-compose.yml
 
 	switch serviceName {
-	case "webservice":
+	case "webservice-api":
 		modules.Webservice()
-	case "consumer":
-		modules.Consumer()
+	case "publish-message-to-consumer-dog", "publish-message-to-consumer-cat":
+		modules.Consumer(serviceName)
 	default:
-		panic(errors.New(serviceName + "is not supported."))
+		panic(errors.New(serviceName + " is not supported."))
 	}
 }
